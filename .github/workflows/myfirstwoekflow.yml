@@ -1,1 +1,9 @@
-name: myfirstworkflows
+name: MyFirstWorkFlows
+
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Print welcome message
+        run: echo "welcome to the world of GitHub Actions!"
