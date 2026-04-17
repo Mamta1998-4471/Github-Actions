@@ -2,7 +2,7 @@ name: MyFirstWorkFlows
 on: push
 jobs:
   my_first_job:
-    runs-on: [ self-hosted, linux , x64, b14 ]
+    runs-on: self-hosted
     steps: 
       - name: git clone
         uses: actions/checkout@v6
