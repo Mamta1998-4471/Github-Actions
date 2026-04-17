@@ -7,11 +7,17 @@ jobs:
       - name: Creating a report file
         run: echo "This is my first GitHub Actions workflow!" > report.txt
 
-      - name: Upload report file
-        uses: actions/upload-artifact@v4
+  my_second_job:
+    needs: my_first_job
+    runs-on: self-hosted
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v5
         with:
-          name: my-report
-          path: report.txt
+          name: report.txt
+      - name: Check content
+        run: cat report.txt
+
 
 
       
