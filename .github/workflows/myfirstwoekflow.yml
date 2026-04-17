@@ -9,8 +9,7 @@ jobs:
       - name: list files
         run: ls -la
   my_second_job:
-    runs-on: unbuntu_latest
-    needs: my_first_job
+    runs-on: self-hosted
     steps:
       - name: Install nodejs
         uses: actions/setup-node@v6
