@@ -1,12 +1,21 @@
 name: MyFirstWorkFlows
-
 on: push
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  my_first_job:
+    runs-on: [ self-hosted, linux , x64, b14 ]
     steps: 
       - name: git clone
         uses: actions/checkout@v6
       - name: list files
         run: ls -la
+  my_second_job:
+    runs-on: unbuntu_latest
+    needs: my_first_job
+    steps:
+      - name: Install nodejs
+        uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+
+      
         
