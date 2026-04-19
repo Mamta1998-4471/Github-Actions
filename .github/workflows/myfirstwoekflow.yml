@@ -3,28 +3,14 @@ on: push
 jobs:
   my_first_job:
     runs-on: ubuntu-latest
-    steps: 
-      - name: Creating a report file
-        run: echo "This is my first GitHub Actions workflow!" > report.txt
-       
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: report.txt
-          path: report.txt
-      
-  my_second_job:
-    needs: my_first_job
-    runs-on: ubuntu-latest
     steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v5
-        with:
-          name: report.txt
-      - name: Check content
-        run: cat report.txt
-
-
-
-      
-        
+      -name: Aws_key_setup
+       uses: aws-actions/configure-aws-credentials@v1
+       with:
+         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+         aws-region: us-east-1
+      - name: Aws cli check
+        run: aws --version
+      - name: S3 bucket list
+        run: aws s3 ls
