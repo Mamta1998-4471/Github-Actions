@@ -3,29 +3,14 @@ on: [push]
 jobs:
   my-first-job1:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12, 14, 16]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
-  my-first-job2:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-  my-first-job3:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '18'
-      
+          node-version: ${{ matrix.node-version }}
+  
